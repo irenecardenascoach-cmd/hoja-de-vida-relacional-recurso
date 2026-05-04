@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Hoja de Vida Relacional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bone: #DED1C1;
+            --muted-teal: #88A18C;
+            --steal-blues: #7E99B4;
+            --cinnamon: #BB6F58;
+            --bone-light: #EDE5DB;
+            --bone-dark: #CEC1B1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, var(--bone) 0%, var(--bone-light) 100%);
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .app-header {
+            background: linear-gradient(135deg, var(--steal-blues) 0%, var(--muted-teal) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .app-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .app-header p {
+            font-size: 16px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .controls-section {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .controls-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--bone);
+        }
+
+        .controls-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--steal-blues);
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .control-card {
+            background: var(--bone-light);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .control-card:hover {
+            border-color: var(--muted-teal);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(136, 161, 140, 0.15);
+        }
+
+        .control-card label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--steal-blues);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .control-card input[type="color"] {
+            width: 100%;
+            height: 50px;
+            border: 3px solid var(--bone-dark);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-card input[type="color"]:hover {
+            border-color: var(--muted-teal);
+        }
+
+        .control-card input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed var(--bone-dark);
+            border-radius: 12px;
+            font-size: 13px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .control-card input[type="file"]:hover {
+            border-color: var(--muted-teal);
+            background: var(--bone-light);
+        }
+
+        .stickers-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .stickers-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--steal-blues);
+            margin-bottom: 15px;
+        }
+
+        .stickers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 12px;
+        }
+
+        .sticker-btn {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--bone);
+            border-radius: 15px;
+            background: white;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sticker-btn:hover {
+            transform: scale(1.15) rotate(5deg);
+            border-color: var(--muted-teal);
+            box-shadow: 0 8px 20px rgba(136, 161, 140, 0.3);
+        }
+
+        .content-wrapper {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .content {
+            padding: 50px 40px;
+            position: relative;
+        }
+
+        .sticker-overlay {
+            position: absolute;
+            font-size: 45px;
+            cursor: move;
+            z-index: 10;
+            user-select: none;
+            transition: transform 0.2s ease;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+        }
+
+        .sticker-overlay:hover {
+            transform: scale(1.1);
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 4px solid var(--steal-blues);
+            position: relative;
+        }
+
+        .header-decoration {
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--cinnamon);
+        }
+
+        .photo-container {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid var(--steal-blues);
+            box-shadow: 0 15px 40px rgba(126, 153, 180, 0.3);
+            background: var(--bone-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .photo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(126, 153, 180, 0.4);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder {
+            font-size: 90px;
+            opacity: 0.3;
+        }
+
+        .main-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--steal-blues);
+            line-height: 1.2;
+        }
+
+        .main-title:focus {
+            outline: 3px solid var(--muted-teal);
+            outline-offset: 5px;
+            border-radius: 8px;
+        }
+
+        .subtitle {
+            font-size: 22px;
+            color: var(--cinnamon);
+            font-weight: 400;
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .section-card {
+            background: linear-gradient(135deg, var(--bone-light) 0%, white 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 6px solid var(--muted-teal);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(136, 161, 140, 0.2);
+            border-left-color: var(--steal-blues);
+        }
+
+        .section-card:nth-child(4n+1) {
+            border-left-color: var(--steal-blues);
+        }
+
+        .section-card:nth-child(4n+2) {
+            border-left-color: var(--muted-teal);
+        }
+
+        .section-card:nth-child(4n+3) {
+            border-left-color: var(--cinnamon);
+        }
+
+        .section-card:nth-child(4n+4) {
+            border-left-color: var(--steal-blues);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: var(--steal-blues);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            font-size: 28px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .editable-field {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--bone);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.3px;
+            resize: vertical;
+            min-height: 100px;
+            transition: all 0.3s ease;
+            background: white;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .editable-field:focus {
+            outline: none;
+            border-color: var(--muted-teal);
+            box-shadow: 0 0 0 4px rgba(136, 161, 140, 0.1);
+            background: #fefefe;
+        }
+
+        .editable-field::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+        .gallery-section {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--bone-light) 0%, white 100%);
+            padding: 35px;
+            border-radius: 20px;
+            border: 3px solid var(--steal-blues);
+            margin-top: 20px;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 180px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 4px solid var(--bone-dark);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: var(--muted-teal);
+            box-shadow: 0 8px 25px rgba(136, 161, 140, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bone-light);
+            color: var(--steal-blues);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .download-guide {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF3CD 100%);
+            border: 3px solid #FFD700;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+        }
+
+        .download-guide-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #B8860B;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .download-steps {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .download-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--bone-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--steal-blues);
+        }
+
+        .step-number {
+            background: var(--steal-blues);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .step-text strong {
+            color: var(--steal-blues);
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 3px solid var(--bone);
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            border: none;
+            border-radius: 15px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.3px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--steal-blues) 0%, var(--muted-teal) 100%);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(126, 153, 180, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--cinnamon) 0%, #A85D49 100%);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(187, 111, 88, 0.4);
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            border: 3px solid var(--muted-teal);
+        }
+
+        .music-player.active {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .music-player-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--steal-blues);
+            margin-bottom: 10px;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                padding: 0;
+                margin: 0;
+            }
+            .app-header,
+            .controls-section,
+            .download-guide,
+            .action-buttons,
+            .music-player {
+                display: none !important;
+            }
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+            .content-wrapper {
+                box-shadow: none;
+            }
+            .content {
+                padding: 20px;
+            }
+            .section-card {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            .header-section {
+                page-break-after: avoid;
+            }
+            .sticker-overlay {
+                position: absolute !important;
+            }
+            .sections-grid {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-header h1 {
+                font-size: 36px;
+            }
+            .main-title {
+                font-size: 42px;
+            }
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-header">
+        <h1>✨ Mi Hoja de Vida Relacional ✨</h1>
+        <p>Crea tu perfil único y compártelo con el mundo</p>
+    </div>
+
+    <div class="container">
+        <div class="controls-section">
+            <div class="controls-header">
+                <h2>🎨 Personalización</h2>
+            </div>
+            
+            <div class="controls-grid">
+                <div class="control-card">
+                    <label>🎨 Color de acento</label>
+                    <input type="color" id="mainColor" value="#7E99B4">
+                </div>
+                
+                <div class="control-card">
+                    <label>📸 Foto principal</label>
+                    <input type="file" id="mainPhoto" accept="image/*">
+                </div>
+                
+                <div class="control-card">
+                    <label>🎵 Música de fondo</label>
+                    <input type="file" id="backgroundMusic" accept="audio/*">
+                </div>
+                
+                <div class="control-card">
+                    <label>🖼️ Galería de fotos</label>
+                    <input type="file" id="galleryPhotos" accept="image/*" multiple>
+                </div>
+            </div>
+
+            <div class="stickers-panel">
+                <div class="stickers-title">✨ Stickers decorativos (haz clic y arrastra)</div>
+                <div class="stickers-grid">
+                    <button class="sticker-btn tooltip" onclick="addSticker('❤️')" data-tooltip="Amor">❤️</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('⭐')" data-tooltip="Estrella">⭐</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🌟')" data-tooltip="Brillo">🌟</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('✨')" data-tooltip="Chispas">✨</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('💕')" data-tooltip="Corazones">💕</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🌈')" data-tooltip="Arcoíris">🌈</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🦋')" data-tooltip="Mariposa">🦋</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🌸')" data-tooltip="Flor">🌸</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🎵')" data-tooltip="Música">🎵</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('☀️')" data-tooltip="Sol">☀️</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🌙')" data-tooltip="Luna">🌙</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('💫')" data-tooltip="Estrella fugaz">💫</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🌺')" data-tooltip="Hibisco">🌺</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🍃')" data-tooltip="Hoja">🍃</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('💝')" data-tooltip="Regalo">💝</button>
+                    <button class="sticker-btn tooltip" onclick="addSticker('🎀')" data-tooltip="Moño">🎀</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="content" id="printableContent">
+                <div class="header-section">
+                    <div class="photo-container" id="photoContainer">
+                        <div class="photo-placeholder">📸</div>
+                    </div>
+                    <h1 class="main-title" contenteditable="true">Tu Nombre Aquí</h1>
+                    <p class="subtitle" contenteditable="true">Una persona única buscando conexiones auténticas</p>
+                    <div class="header-decoration"></div>
+                </div>
+
+                <div class="sections-grid">
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🔥</span>
+                            Mis pasiones
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Viajar y descubrir nuevas culturas, la fotografía que captura momentos únicos, cocinar platos nuevos y experimentar sabores..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🎨</span>
+                            Hobbies
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Pintura al óleo los fines de semana, tocar guitarra española, senderismo en montaña, leer novelas históricas..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🌍</span>
+                            Idiomas
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Español (nativo), Inglés (avanzado - C1), Francés (intermedio - B1), Portugués (básico)..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🍕</span>
+                            Comida favorita
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Pizza artesanal con masa madre, sushi de salmón, comida mediterránea, postres con chocolate..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🎨</span>
+                            Color favorito
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Azul turquesa porque representa la calma del mar y la libertad del cielo..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🎯</span>
+                            Metas a corto plazo
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Aprender a bailar salsa en 3 meses, terminar mi curso de fotografía digital, leer 2 libros al mes..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">📅</span>
+                            Metas a mediano plazo
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Viajar a Europa el próximo año, obtener una certificación profesional en mi área, mejorar mi nivel de francés..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🌟</span>
+                            Metas a largo plazo
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Construir una familia amorosa y unida, tener mi propio negocio creativo, vivir cerca al mar en una casa con jardín..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🚫</span>
+                            Mis no negociables
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Honestidad total en todo momento, respeto mutuo, lealtad incondicional, comunicación abierta y sincera, valores familiares..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">❌</span>
+                            Lo que NO quiero
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Deshonestidad o mentiras, falta de ambición o conformismo, mente cerrada, personas controladoras, negatividad constante..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">💖</span>
+                            Lo que ME ENCANTA
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Sentido del humor inteligente, empatía genuina, que sea aventurera y espontánea, buena comunicación, que ame viajar..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">✨</span>
+                            Personalidad que adoro
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Espontaneidad para aventuras inesperadas, inteligencia emocional, optimismo contagioso, creatividad, generosidad, autenticidad..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">👁️</span>
+                            Atracción física
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Sonrisa sincera que ilumina, ojos expresivos que transmiten emociones, manos cuidadas, estilo personal definido..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">📍</span>
+                            Lugares favoritos
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: La playa al atardecer escuchando las olas, cafeterías acogedoras con música suave, montañas con vistas panorámicas..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">✈️</span>
+                            Destinos soñados
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Japón en época de cerezos, Islandia y sus auroras boreales, Machu Picchu, las Maldivas, Santorini..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">💭</span>
+                            Mi filosofía
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Vivir el presente plenamente, practicar gratitud diaria, crecer constantemente como persona, ser la mejor versión de mí..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🎬</span>
+                            Películas/Series
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Friends (mi comfort show), La La Land, Breaking Bad, The Crown, películas de Studio Ghibli..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">📚</span>
+                            Libros que me marcaron
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: El Alquimista de Paulo Coelho, Cien Años de Soledad, El Poder del Ahora, Sapiens..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🎵</span>
+                            Música favorita
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Rock alternativo (Arctic Monkeys), salsa clásica, jazz suave para relajarme, reggaeton para bailar..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🏆</span>
+                            Mis logros
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Graduarme con honores, superar mi miedo a hablar en público, ayudar a mi familia en momentos difíciles..."></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">💬</span>
+                            Frase favorita
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: 'La vida es lo que pasa mientras estás ocupado haciendo otros planes' - John Lennon"></textarea>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-title">
+                            <span class="section-icon">🌱</span>
+                            Trabajando en...
+                        </div>
+                        <textarea class="editable-field" placeholder="Ej: Mejorar mi salud mental con meditación diaria, aprender italiano, desarrollar mi marca personal..."></textarea>
+                    </div>
+                </div>
+
+                <div class="gallery-section">
+                    <div class="section-title">
+                        <span class="section-icon">📸</span>
+                        Mis fotos favoritas
+                    </div>
+                    <div class="photo-gallery" id="photoGallery">
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder">+ Agrega tus fotos aquí</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-guide">
+            <div class="download-guide-title">
+                📥 Guía para descargar tu Hoja de Vida en PDF
+            </div>
+            <p style="margin-bottom: 20px; color: #666; line-height: 1.6;">Sigue estos pasos según tu navegador para guardar tu hoja como PDF:</p>
+            
+            <div class="download-steps">
+                <div class="download-step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        Haz clic en el botón <strong>"🖨️ Descargar en PDF"</strong> que está abajo
+                    </div>
+                </div>
+                
+                <div class="download-step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        Se abrirá una ventana de impresión. En <strong>"Destino"</strong> o <strong>"Impresora"</strong>, selecciona:<br>
+                        • Chrome/Edge: <strong>"Guardar como PDF"</strong><br>
+                        • Firefox: <strong>"Microsoft Print to PDF"</strong><br>
+                        • Safari (Mac): Clic en <strong>"PDF"</strong> → <strong>"Guardar como PDF"</strong>
+                    </div>
+                </div>
+                
+                <div class="download-step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        Ajusta los <strong>márgenes a "Mínimos"</strong> para mejor apariencia
+                    </div>
+                </div>
+                
+                <div class="download-step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">
+                        Haz clic en <strong>"Guardar"</strong> y elige dónde quieres guardarlo. ¡Listo! 🎉
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="printToPDF()">🖨️ Descargar en PDF</button>
+        </div>
+    </div>
+
+    <div class="music-player" id="musicPlayer">
+        <div class="music-player-title">🎵 Tu música</div>
+        <audio id="audioPlayer" controls style="width: 280px;"></audio>
+    </div>
+
+    <script>
+        let draggedSticker = null;
+        let offsetX, offsetY;
+
+        // Cambiar color principal
+        document.getElementById('mainColor').addEventListener('input', function(e) {
+            const color = e.target.value;
+            document.documentElement.style.setProperty('--steal-blues', color);
+        });
+
+        // Cargar foto principal
+        document.getElementById('mainPhoto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('photoContainer').innerHTML = 
+                        `<img src="${event.target.result}" alt="Foto principal">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Cargar música
+        document.getElementById('backgroundMusic').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                const audio = document.getElementById('audioPlayer');
+                audio.src = url;
+                document.getElementById('musicPlayer').classList.add('active');
+            }
+        });
+
+        // Cargar galería de fotos
+        document.getElementById('galleryPhotos').addEventListener('change', function(e) {
+            const gallery = document.getElementById('photoGallery');
+            gallery.innerHTML = '';
+            
+            Array.from(e.target.files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+                    div.innerHTML = `<img src="${event.target.result}" alt="Foto de galería">`;
+                    gallery.appendChild(div);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        // Agregar sticker
+        function addSticker(emoji) {
+            const content = document.getElementById('printableContent');
+            const sticker = document.createElement('div');
+            sticker.className = 'sticker-overlay';
+            sticker.textContent = emoji;
+            sticker.style.left = Math.random() * 70 + 15 + '%';
+            sticker.style.top = Math.random() * 70 + 15 + '%';
+            
+            sticker.addEventListener('mousedown', startDrag);
+            sticker.addEventListener('dblclick', function() {
+                if (confirm('¿Eliminar este sticker?')) {
+                    sticker.remove();
+                }
+            });
+            
+            content.appendChild(sticker);
+        }
+
+        // Funciones de arrastre
+        function startDrag(e) {
+            draggedSticker = e.target;
+            const rect = draggedSticker.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDrag);
+            draggedSticker.style.cursor = 'grabbing';
+        }
+
+        function drag(e) {
+            if (draggedSticker) {
+                const container = document.getElementById('printableContent');
+                const containerRect = container.getBoundingClientRect();
+                
+                let x = e.clientX - containerRect.left - offsetX;
+                let y = e.clientY - containerRect.top - offsetY;
+                
+                draggedSticker.style.left = x + 'px';
+                draggedSticker.style.top = y + 'px';
+            }
+        }
+
+        function stopDrag() {
+            if (draggedSticker) {
+                draggedSticker.style.cursor = 'move';
+            }
+            draggedSticker = null;
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('mouseup', stopDrag);
+        }
+
+        // Descargar como PDF
+        function printToPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
